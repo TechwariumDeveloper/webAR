@@ -1,4 +1,4 @@
-import * as THREE from '../webAR/libs/three125/three.module';
+import * as THREE from '../webAR/libs/three125/three.module.js';
 import { GLTFLoader } from '../webAR/libs/three/jsm/GLTFLoader.js';
 import { RGBELoader } from '../webAR/libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../webAR/libs/ARButton.js';
