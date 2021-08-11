@@ -1,6 +1,6 @@
 import * as THREE from '../common lib/three library/three.module.js';
 import { GLTFLoader } from '../common lib/loaders/GLTFLoader.js';
-import { RGBELoader } from '../common lib/loaders/RGBELoader.js';
+import { RGBELoader } from '../common lib/loaders/RGBELoad';
 import { ARButton } from '../AR Shop/lib/ARButton.js';
 import { LoadingBar } from '../AR Shop/lib/LoadingBar.js';
 
