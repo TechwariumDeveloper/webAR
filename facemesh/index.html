@@ -28,7 +28,7 @@
             
             <div class="" id="webcam-control">
                 <div class="d-flex mt-1">
-                    <span id="webcam-caption" class="text-white mr-2 ">Camera</span>
+                    <span id="webcam-cap" class="text-white mr-2 ">Camera</span>
                     <label class="form-switch">
                         <input type="checkbox" id="webcam-switch">
                         <i></i> 
@@ -49,7 +49,9 @@
 
         <div id="image-container">
             <img id="face" class="img-fluid" src="images/image1.jpg">
-            <div id="canvas" width="640" height="480"></div>
+            <div id="canvas" width="640" height="480">
+                <canvas id="divCanvas"></canvas>
+            </div>
             <div class="loading d-none">
                 Loading Model
                 <div class="spinner-border" role="status">
@@ -87,9 +89,16 @@
                 <div id="webcam-container" class="webcam-container col-12 d-none p-0 m-0">
                     <video id="webcam" autoplay playsinline width="640" height="480"></video>
                 </div>
-            </div>        
+            </div>
+            <div class="fixed-bottom mb-5 pb-3">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn snap" style="background-color: #003638;color: white;">Take Snap</button>
+                </div>
+            </div>  
         </div>
+       
         <div class="md-overlay"></div>
+
     </main>
     <script src='js/face-mask.js'></script>
 </body>

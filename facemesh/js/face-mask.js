@@ -1,7 +1,8 @@
 const webcamElement = document.getElementById('webcam');
 const canvasElement = document.getElementById('canvas');
 const imageElement = document.getElementById('face');
-const webcam = new Webcam(webcamElement, 'user');
+const divCanvas= document.getElementById('divCanvas');
+const webcam = new Webcam(webcamElement, 'user', divCanvas);
 let selectedMask = $(".selected-mask img");
 let isVideo = false;
 let model = null;
@@ -16,6 +17,7 @@ let maskKeyPointIndexs = [10, 234, 152, 454]; //overhead, left Cheek, chin, righ
 $("#webcam-switch").change(function () {
     if(this.checked){
         $('.md-modal').addClass('md-show');
+        $("#mask-slider").hide()
         webcam.start()
             .then(result =>{
                 isVideo = true;
@@ -23,7 +25,7 @@ $("#webcam-switch").change(function () {
                 switchSource();               
                 console.log("webcam started");                
                 maskOnImage = false;
-                startFaceMask();
+                //startFaceMask();
             })
             .catch(err => {
                 displayError();
@@ -39,9 +41,27 @@ $("#webcam-switch").change(function () {
         isVideo = false;
         switchSource();
         cameraStopped(true);
+        
         console.log("webcam stopped");
     }        
 });
+
+$(".snap").click(function(){
+    let picture = webcam.snap();
+    webcam.stop();
+        if(cameraFrame!= null){
+            clearMask = true;
+            detectFace = false;
+            cancelAnimationFrame(cameraFrame);
+        }
+        isVideo = false;
+        switchSource();
+        cameraStopped(true);
+        console.log("webcam stopped");
+        $("#webcam-switch").trigger('click')
+        $("#mask-slider").show()
+    $('#face').attr('src', picture);
+})
 
 $("#arrowLeft").click(function () {
     let itemWidth = parseInt($("#mask-list ul li").css("width")) 
