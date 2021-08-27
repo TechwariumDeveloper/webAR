@@ -75,6 +75,11 @@ body {
   display: none;
 }
 
+.video iframe {
+  width: 100vh;
+  height: 60vh;
+}
+
 .videoElement {
   margin: auto;
 }
