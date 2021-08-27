@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techwarium</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id = "drag">
+<div id ="spin">
+    <a href="/video.html?Govirtual-training" target="_blank" >
+        <img src="1.png" alt="">
+    </a>
+    <a href="/video.html?brand-store" target="_blank">
+        <img src="2.png" alt="">
+    </a>
+    <a href="/video.html?AR-furniture" target="_blank">
+        <img src="3.png" alt="">
+    </a>
+    <a href="/video.html?VR-realstate" target="_blank">
+        <img src="4.png" alt="">
+    </a>
+    <a href="/video.html?VR-collaboration" target="_blank">
+        <img src="5.png" alt="">
+    </a>
+    <a href="/video.html?virtual-store" target="_blank">
+        <img src="6.png" alt="">
+    </a>
+    <a href="/video.htmlvirtual-store?virtual-showroom" target="_blank">
+        <img src="7.png" alt="">
+    </a>
+
+</div>
+
+<div id="ground"></div>
+</div>
+
+<script>
+
+
+
+
+var radius = 340;
+var autoRotate = true;
+var rotateSpeed = -60;
+var imgWidht = 190;
+var imgHeight = 230;
+
+setTimeout(init,1000);
+
+var odrag = document.getElementById('drag');
+var ospin = document.getElementById('spin');
+var aImg = ospin.getElementsByTagName('img');
+
+var aEle = [...aImg];
+
+ospin.style.width = imgWidht + "px";
+ospin.style.height = imgHeight + "px";
+
+var ground = document.getElementById('ground');
+ground.style.width = radius * 3 + "px";
+ground.style.height = radius * 3 + "px";
+
+function init(delayTime) {
+
+    for (var i =0 ; i < aEle.length ; i++)
+    {
+aEle[i].style.transform = "rotateY(" + (i*(360 /aEle.length)) + "deg)translateZ(" + radius + "px)";
+aEle[i].style.transition = "transform 1s";
+aEle[i].style.transitionDelay = delayTime || (aEle.length-i)/4 + "s";
+
+    }
+}
+
+function applyTransform(obj){
+
+    if(tY > 180) tY = 180;
+    if(tY < 0) tY= 0;
+
+    obj.style.transform = "rotateX("+(-tY) + "deg) rotateY(" + (tX) + "deg)";
+}
+
+function playSpin(yes) {
+
+    ospin.style.animationPlayState = (yes ? 'running' : 'paused');
+}
+
+var sX, sY, nX, nY,desX = 0,
+desY = 0,
+tX = 0,
+tY = 10;
+
+if (autoRotate){
+
+    var animationName = (rotateSpeed >0 ? 'spin' : 'spinRevert');
+    ospin.style.animation = ` ${animationName} ${Math.abs(rotateSpeed)} s infinite linear`;
+}
+
+document.onpointerdown = function(e){
+
+    clearInterval(odrag.timer);
+    e =e || window.event;
+    var sX = e.clientX,
+     sY = e.clientY;
+
+
+this.onpointermove = function (e){
+    e = e || window.event;
+    var nX = e.clientX,
+     nY = e.clientY;
+
+    desX = nX - sX;
+    desY = nY - sY;
+    tX += desX * 0.1;
+    tY += desY * 0.1;
+
+    applyTransform(odrag);
+
+    sX = nX;
+    sY = nY;
+};
+
+this.onpointerup = function(e){
+    odrag.timer = setInterval(function () {
+
+        desX *= 0.95;
+        desY *= 0.95;
+        tX += desX * 0.1;
+        tY += desY * 0.1;
+
+        applyTransform(odrag);
+        playSpin(false);
+
+   
+
+            if(Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5){
+                clearInterval(odrag.timer);
+                playSpin(true);
+            }
+        
+    }, 17)
+
+    this.onpointermove = this.onpointerup = null;
+};
+
+return false;
+};
+    </script> 
+   
+    </body>
+
+</html>
+
+
