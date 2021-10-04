@@ -11,7 +11,7 @@ body {
 body {
   overflow: hidden;
   display: flex;
-  background: #070716;
+  background: #003638;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
@@ -69,17 +69,4 @@ body {
   to {
     transform: rotateY(0deg);
   }
-}
-
-.video {
-  display: none;
-}
-
-.video iframe {
-  width: 100vh;
-  height: 60vh;
-}
-
-.videoElement {
-  margin: auto;
 }
