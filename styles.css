@@ -6,3 +6,7 @@ body {
   background-color: #003638;
   color: white;
 }
+
+.card-img {
+  height: 250px;
+}
