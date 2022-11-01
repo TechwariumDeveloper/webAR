@@ -103,7 +103,7 @@ class App{
 
         }, undefined, (err)=>{
             console.error( 'An error occurred setting the environment', err);
-        } );
+        });
     }
     
 	showChair(id){
